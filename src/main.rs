@@ -64,20 +64,22 @@ fn main() -> Result<()> {
             list(db)?
         }
         Commands::Update { id, name, body } => {
-            let test = db.get(1);
-            match body {
-                Some(body) => db.update(TodoItem {
-                    id: Some(id),
-                    name,
-                    body: Some(body),
-                })?,
-                None => db.update(TodoItem {
-                    id: Some(id),
-                    name,
-                    body: None,
-                })?,
+            println!("id: {}, name: {:?}, body: {:?}", id, &name, body);
+            let updated_body = match body {
+                Some(body) => body,
+                None => db
+                    .get(id)?
+                    .body
+                    .expect("Problem getting todo item {}'s body!"),
             };
-            println!("{:?}", test);
+
+            let updated_todo_item = TodoItem {
+                id: Some(id),
+                name,
+                body: Some(updated_body),
+            };
+
+            db.update(updated_todo_item)?;
             list(db)?
         }
         Commands::Drop {} => {
