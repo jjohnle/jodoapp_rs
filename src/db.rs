@@ -65,4 +65,35 @@ impl Db {
 
         Ok(todoitem_iter.collect::<Result<_, rusqlite::Error>>()?)
     }
+
+    // update a task based on ID
+    pub fn update(&self, todo_item_update: TodoItem) -> Result<()> {
+        self.0.execute(
+            "UPDATE todoitems SET name = ?1, body = ?2 where id = ?3",
+            params![
+                todo_item_update.name,
+                todo_item_update.body,
+                todo_item_update.id
+            ],
+        )?;
+
+        Ok(())
+    }
+
+    // get a task based on ID
+    pub fn get(&self, id: usize) -> Result<TodoItem> {
+        let mut stmt = self
+            .0
+            .prepare("SELECT id, name, body FROM todoitems WHERE id = ?1")?;
+
+        let to_ret = stmt.query_row(params![id], |row| {
+            Ok(TodoItem {
+                id: row.get(0)?,
+                name: row.get(1)?,
+                body: row.get(2).unwrap_or_else(|_| None),
+            })
+        });
+
+        Ok(to_ret?)
+    }
 }
