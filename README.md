@@ -33,3 +33,12 @@ drops your entire todo list! dangerous! there are no warnings this will wipe you
 `jodo help`
 
 prints help information. can be used with subcommands to print their help.
+
+
+## TODO
+
+- [] make output prettier with something like 'comfy-table'
+- [] add a "complete"/"done" field that can be edited
+- [] maybe create a TUI version -- though this seems to defeat the purpose of a quick access todo list...?
+- [] allow for specification of database name/location
+- [] ...

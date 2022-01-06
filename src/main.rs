@@ -1,6 +1,3 @@
-#![allow(dead_code)]
-#![allow(unused_variables)]
-
 mod db;
 mod todo;
 
@@ -64,7 +61,6 @@ fn main() -> Result<()> {
             list(db)?
         }
         Commands::Update { id, name, body } => {
-            println!("id: {}, name: {:?}, body: {:?}", id, &name, body);
             let updated_body = match body {
                 Some(body) => body,
                 None => db
