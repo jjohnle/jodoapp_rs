@@ -6,6 +6,7 @@ pub struct TodoItem {
     pub id: Option<usize>,
     pub name: String,
     pub body: Option<String>,
+    pub done: bool,
 }
 
 impl TodoItem {
@@ -14,6 +15,7 @@ impl TodoItem {
             id: None,
             name,
             body,
+            done: false,
         })
     }
 }
