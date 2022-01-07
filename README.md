@@ -42,10 +42,10 @@ toggles a task with id as done or not
 ## TODO
 
 - [x] make output prettier with something like 'comfy-table'
-- [] investigate why making the name colorful messes up the table
+- [ ] investigate why making the name colorful messes up the table
 - [x] add a "complete"/"done" field that can be edited
-- [] find a way to make "done" field look prettier
-- [] use AppSettings::Hidden from clap to create some shorter aliases for the commands
-- [] maybe create a TUI version -- though this seems to defeat the purpose of a quick access todo list...?
-- [] allow for specification of database name/location
-- [] ...
+- [ ] find a way to make "done" field look prettier
+- [ ] use AppSettings::Hidden from clap to create some shorter aliases for the commands
+- [ ] maybe create a TUI version -- though this seems to defeat the purpose of a quick access todo list...?
+- [ ] allow for specification of database name/location
+- [ ] ...
