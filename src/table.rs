@@ -25,9 +25,9 @@ pub fn create_table(todos: Vec<TodoItemMeta>) -> Result<Table> {
             item.body.unwrap_or("".to_string())
         ));
         let item_done = if item.done {
-            "true".to_string()
+            "y".to_string()
         } else {
-            "false".to_string()
+            "n".to_string()
         };
         table.add_row(vec![
             Cell::new(item.id.to_string()).set_alignment(CellAlignment::Left),
