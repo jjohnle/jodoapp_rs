@@ -1,11 +1,11 @@
-use crate::db::TodoItemMeta;
+use crate::todo::TodoItem;
 use ansi_term::Color::Green;
 use color_eyre::Result;
 use comfy_table::modifiers::UTF8_ROUND_CORNERS;
 use comfy_table::presets::UTF8_FULL;
 use comfy_table::*;
 
-pub fn create_table(todos: Vec<TodoItemMeta>) -> Result<Table> {
+pub fn create_table(todos: Vec<TodoItem>) -> Result<Table> {
     let mut table = Table::new();
     table
         .load_preset(UTF8_FULL)
@@ -30,7 +30,7 @@ pub fn create_table(todos: Vec<TodoItemMeta>) -> Result<Table> {
             "n".to_string()
         };
         table.add_row(vec![
-            Cell::new(item.id.to_string()).set_alignment(CellAlignment::Left),
+            Cell::new(item.id.unwrap().to_string()).set_alignment(CellAlignment::Left),
             Cell::new(item_done),
             Cell::new(item_entry),
         ]);

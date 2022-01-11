@@ -1,15 +1,7 @@
 use crate::todo::TodoItem;
 use color_eyre::eyre::Result;
 use rusqlite::{params, Connection};
-
 pub struct Db(Connection);
-
-pub struct TodoItemMeta {
-    pub id: usize,
-    pub name: String,
-    pub body: Option<String>,
-    pub done: bool,
-}
 
 impl Db {
     // read or establish database
@@ -52,13 +44,13 @@ impl Db {
     }
 
     // generate vector of items from db for printing
-    pub fn list(&self) -> Result<Vec<TodoItemMeta>> {
+    pub fn list(&self) -> Result<Vec<TodoItem>> {
         let mut stmt = self
             .0
             .prepare("SELECT id, name, body, done FROM todoitems ORDER BY id")?;
 
         let todoitem_iter = stmt.query_map([], |row| {
-            Ok(TodoItemMeta {
+            Ok(TodoItem {
                 id: row.get(0)?,
                 name: row.get(1)?,
                 body: row.get(2)?,

@@ -53,10 +53,18 @@ fn main() -> Result<()> {
             db.drop_todo_items()?;
             println!("Dropped table!");
         }
-        Commands::Mark { id } => {
-            db.toggle_done(id)?;
-            println!("{}", create_table(db.list()?)?);
-        }
+        Commands::Mark { id } => match id {
+            Some(id) => {
+                db.toggle_done(id)?;
+                println!("{}", create_table(db.list()?)?);
+            }
+            None => {
+                let todos = db.list().unwrap();
+                let chosen = dialogue::single_dialogue(todos.clone())?;
+                db.toggle_done(todos.get(chosen.unwrap()).unwrap().id.unwrap())?;
+                println!("{}", create_table(db.list()?)?);
+            }
+        },
     };
 
     Ok(())

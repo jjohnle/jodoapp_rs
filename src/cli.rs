@@ -38,8 +38,7 @@ pub enum Commands {
     Drop {},
 
     // toggle a todo item as done or not
-    #[clap(setting(AppSettings::ArgRequiredElseHelp))]
     Mark {
-        id: usize,
+        id: Option<usize>,
     },
 }
