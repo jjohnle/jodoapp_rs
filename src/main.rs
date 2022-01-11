@@ -1,5 +1,6 @@
 mod cli;
 mod db;
+mod dialogue;
 mod table;
 mod todo;
 
@@ -34,10 +35,7 @@ fn main() -> Result<()> {
         Commands::Update { id, name, body } => {
             let updated_body = match body {
                 Some(body) => body,
-                None => db
-                    .get(id)?
-                    .body
-                    .expect("Problem getting todo item {}'s body!"),
+                None => db.get(id)?.body.expect("Problem getting todo item body!"),
             };
 
             let updated_todo_item = TodoItem {

@@ -1,4 +1,5 @@
 use color_eyre::eyre::Result;
+use std::fmt::{self, Display};
 
 // struct that represents a todo item
 #[derive(Debug, Clone)]
@@ -17,5 +18,11 @@ impl TodoItem {
             body,
             done: false,
         })
+    }
+}
+
+impl Display for TodoItem {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(f, "{}", self.name)
     }
 }
