@@ -23,6 +23,6 @@ impl TodoItem {
 
 impl Display for TodoItem {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(f, "{}", self.name)
+        write!(f, "{}: {}", self.id.unwrap(), self.name)
     }
 }

@@ -59,6 +59,7 @@ fn main() -> Result<()> {
                 println!("{}", create_table(db.list()?)?);
             }
             None => {
+                println!("No <ID> given! Please select task to toggle.");
                 let todos = db.list().unwrap();
                 let chosen = dialogue::single_dialogue(todos.clone())?;
                 db.toggle_done(todos.get(chosen.unwrap()).unwrap().id.unwrap())?;
