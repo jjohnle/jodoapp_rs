@@ -1,3 +1,9 @@
-/target
-jodo.sqlite
 .vscode
+jodo.sqlite
+*.node
+core/index.js
+core/target
+core/jodo.sqlite
+core/index.d.ts
+core/node_modules
+ui/node_modules
